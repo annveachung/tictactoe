@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind CSS Example</title>
+    <title>Tic Tac Toe</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="./TicTacToe.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
-<body class="bg-gray-100 text-center p-10">
-    <h1 class="text-3xl font-bold text-blue-600">Hello, Tailwind!</h1>
-    <p class="mt-4 text-gray-700">This is a simple Tailwind CSS example.</p>
+<body class="bg-teal-50 text-center p-10">
+    <h1 class="text-3xl font-bold text-teal-500">Tic Tac Toe</h1>
+    <div id="gameBoard"></div>
+
+    <script>
+        let game = new TicTacToe(3);
+        game.render();
+    </script>
 </body>
 </html>
