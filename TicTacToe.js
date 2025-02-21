@@ -43,7 +43,7 @@ class TicTacToe {
             message.textContent = 'Player ' + this.player;
         }
         else{
-            message.className = "pt-10 text-2xl text-amber-100 ";
+            message.className = "pt-10 text-2xl text-amber-100 font-mono";
             message.textContent = 'Player ' + this.winner + ' won =)';
         }
 
