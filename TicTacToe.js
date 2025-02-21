@@ -7,6 +7,10 @@ class TicTacToe {
 
     constructor(n) {
         this.n = n;
+        this.initializeBoard();
+    }
+
+    initializeBoard(){
         this.board = [];
         for (let i=0; i<this.n; i++){
             let row = [];
@@ -22,7 +26,7 @@ class TicTacToe {
         gameBoard.className = "flex flex-col items-center";
 
         const board = document.createElement('div');
-        board.className = "grid w-80 h-80 border-8 border-gray-700 bg-teal-600 shadow-2xl shadow-sky-100/60 rounded-3xl text-center p-10";
+        board.className = "grid w-80 h-80 border-8 border-zinc-800 bg-zinc-700 shadow-2xl shadow-blue-50/80 rounded-3xl text-center p-10";
         
         for (let i=0; i<this.n; i++){
             const row = document.createElement('div');
@@ -35,12 +39,18 @@ class TicTacToe {
 
         const message = document.createElement('div');
         if (this.winner == 0){
-            message.className = "pt-10 text-2xl " + this.getCurrentPlayerColor('text');
-            message.textContent = 'Player' + this.player;
+            message.className = "pt-10 text-2xl font-mono " + this.getCurrentPlayerColor('text');
+            message.textContent = 'Player ' + this.player;
         }
         else{
-            message.className = "pt-10 text-2xl text-teal-100 ";
-            message.textContent = 'Player ' + this.winner + ' Won!';
+            message.className = "pt-10 text-2xl text-amber-100 ";
+            message.textContent = 'Player ' + this.winner + ' won =)';
+        }
+
+        if (this.winner != 0){
+            board.addEventListener("click", () => {
+                this.reset();
+            });
         }
 
         gameBoard.replaceChildren(board, message);
@@ -48,7 +58,7 @@ class TicTacToe {
     }
 
     getCurrentPlayerColor(type){
-        return type + '-' + ((this.player == 1) ? 'red-400' : 'gray-100');
+        return type + '-' + ((this.player == 1) ? 'red-300' : 'cyan-200');
     }
 
     renderCell(row, col){
@@ -57,13 +67,13 @@ class TicTacToe {
 
         switch (this.board[row][col]) {
 			case 1:
-				cell.innerHTML = '<span class="material-symbols-outlined text-red-400 text-5xl">circle</span>';
+				cell.innerHTML = '<span class="material-symbols-outlined text-red-300 text-5xl">circle</span>';
 				break;
 			case 2:
-				cell.innerHTML = '<span class="material-symbols-outlined text-gray-100 text-5xl">close</span>';
+				cell.innerHTML = '<span class="material-symbols-outlined text-cyan-200 text-5xl">close</span>';
 				break;
 			default:
-				cell.innerHTML = '<button onClick="game.makeMove('+row+', '+col+');" type="button" class="w-14 h-14 p-2 focus:outline-none bg-teal-100 rounded-lg hover:' + this.getCurrentPlayerColor('bg') +' focus:z-10 focus:ring-4 focus:ring-yellow-300"></button>';
+				cell.innerHTML = '<button onClick="game.makeMove('+row+', '+col+');" type="button" class="w-14 h-14 p-2 focus:outline-none bg-rose-50 rounded-lg hover:' + this.getCurrentPlayerColor('bg') +' focus:z-10 focus:ring-4 focus:ring-amber-200"></button>';
 		}
 
         return cell;
@@ -115,6 +125,13 @@ class TicTacToe {
             this.winner = player;
 
         }
+    }
+
+    reset(){
+        this.player = 1;
+        this.winner = 0;
+        this.initializeBoard();
+        this.render();
     }
     
     test() {
